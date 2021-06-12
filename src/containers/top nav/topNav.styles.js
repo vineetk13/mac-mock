@@ -4,6 +4,7 @@ export const Container = styled.div`
     padding:20px;
     display:flex;
     align-items:center;
+    // border:1px solid white;
 `;
 
 export const Section = styled.div`
