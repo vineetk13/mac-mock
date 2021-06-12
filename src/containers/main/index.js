@@ -12,7 +12,7 @@ const MainContainer = (props) => {
     const [ypos, setYpos] = useState("0px");
     const [openContextMenu, setOpenContextMenu] = useState(false);
     const onCreateFolder = () => {
-        setCount([...count,{id:count.length}]);
+        setCount([...count,{id:count[count.length-1].id+1}]);
     }
     const onDeleteFolder = (e) => {
         // console.log(e.target);
@@ -24,6 +24,8 @@ const MainContainer = (props) => {
         // console.log(e.target.parentNode.getAttribute("id"));
         if(e.target.getAttribute("id")!==null || e.target.parentNode.getAttribute("id")!==null){
             setSelectFolder(e.target.getAttribute("id") || e.target.parentNode.getAttribute("id"));
+        }else{
+            setSelectFolder("");
         }
         // setCount(count+1);
         setXpos(`${e.pageX}px`);
@@ -51,7 +53,7 @@ const MainContainer = (props) => {
     return (
         <Container onClick={handleClick} onDragOver={(e) => e.preventDefault()} onDrop={onDrop} onContextMenu={handleContextMenu}>
             {count.map((f) => <Folder key={f.id} id={f.id} onDragStart={(e) => onDragStart(e,f.id)} />) }
-            <ContextMenu x={xpos} y={ypos} open={openContextMenu} onCreateFolder={onCreateFolder} onDeleteFolder={onDeleteFolder} />
+            <ContextMenu x={xpos} selectedFolder={selectFolder} y={ypos} open={openContextMenu} onCreateFolder={onCreateFolder} onDeleteFolder={onDeleteFolder} />
         </Container>
     )
 }
