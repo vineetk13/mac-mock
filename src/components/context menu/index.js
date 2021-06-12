@@ -1,7 +1,7 @@
 import { Wrapper, Item } from "./contextMenu.styles";
 
 const ContextMenu = (props) => {
-    const { onCreateFolder, onDeleteFolder, selectedFolder } = props;
+    const { onCreateFolder, onDeleteFolder, onDuplicateFolder, selectedFolder } = props;
     return (
         <Wrapper style={{
             display:props.open?"block":"none",
@@ -9,6 +9,7 @@ const ContextMenu = (props) => {
             left:`calc(${props.x} - 20vw)`
         }}>
             <Item onClick={onCreateFolder}>Create folder</Item>
+            {selectedFolder ? <Item onClick={onDuplicateFolder}>Duplicate folder</Item> : null}
             {selectedFolder ? <Item onClick={onDeleteFolder}>Delete folder</Item> : null}
         </Wrapper>
     )

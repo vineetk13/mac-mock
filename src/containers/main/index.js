@@ -6,18 +6,68 @@ import ContextMenu from '../../components/context menu';
 import { Container } from './main.styles';
 
 const MainContainer = (props) => {
-    const [count, setCount] = useState([{id:0},{id:1},{id:2}]);
+    const [count, setCount] = useState([]);
     const [selectFolder, setSelectFolder] = useState("");
     const [xpos, setXpos] = useState("0px");
     const [ypos, setYpos] = useState("0px");
     const [openContextMenu, setOpenContextMenu] = useState(false);
     const onCreateFolder = () => {
-        setCount([...count,{id:count[count.length-1].id+1}]);
+        const newFolder = count.length>0 ? {id:count[count.length-1].id+1,name:`Folder ${count[count.length-1].id+2}`} : {id:0,name:"Folder 1"};
+        setCount([...count,newFolder]);
     }
     const onDeleteFolder = (e) => {
         // console.log(e.target);
-        setCount([...count.filter((f) => f.id!==Number(selectFolder))]);
+        const folderToBeDeleted = count.find((f) => f.id===Number(selectFolder));
+        const filteredList = count.filter((f) => f.id!==Number(selectFolder));
+        let newList;
+        if(folderToBeDeleted.parent>=0){
+            newList = filteredList.map((f) => {
+                if(f.id===folderToBeDeleted.parent){
+                    return {
+                        ...f,
+                        duplicates:f.duplicates.filter((d) => d.id!==folderToBeDeleted.id)
+                    }
+                }
+                return f;
+            })
+        }
+        else{
+            newList = filteredList;
+        }
+        
+        setCount([...newList]);
     }
+    const onDuplicateFolder = (e) => {
+        const toDuplicate = count.find((f) => f.id===Number(selectFolder));
+        const newFolder = {
+            id:count[count.length-1].id+1,
+            name:`${toDuplicate.name} (${toDuplicate.duplicates ? toDuplicate.duplicates.length+1 : 1})`,
+            parent:toDuplicate.id
+        }
+        const newList = count.map((f) => {
+            if(toDuplicate.id===f.id){
+                return {
+                    ...f,
+                    duplicates:f.duplicates ? [...f.duplicates,newFolder] : [newFolder]
+                }
+            }
+            return f;
+        })
+        setCount([...newList,newFolder]);
+    }
+    const onRenameFolder = (value,id) => {
+        const updated = count.map((f) => {
+            if(f.id===id){
+                return {
+                    ...f,
+                    name:value
+                }
+            }
+            return f;
+        })
+        setCount([...updated]);
+    }
+    console.log(count);
     const handleContextMenu = (e) => {
         e.preventDefault();
         // console.log(e.target);
@@ -27,7 +77,7 @@ const MainContainer = (props) => {
         }else{
             setSelectFolder("");
         }
-        // setCount(count+1);
+       
         setXpos(`${e.pageX}px`);
         setYpos(`${e.pageY}px`);
         setOpenContextMenu(true);
@@ -41,19 +91,38 @@ const MainContainer = (props) => {
     const onDrop = (e) => {
         console.log(e);
         e.preventDefault();
-        var data = e.dataTransfer.getData("id");
+        let data = e.dataTransfer.getData("id");
         let reqNode = document.getElementById(data);
         reqNode.style.position = "absolute";
         reqNode.style.top = (e.pageY - 70)+"px";
-        const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+        let vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
         reqNode.style.left = (e.pageX - 20*vw/100)+"px";
 
         // e.target.appendChild(reqNode);
     }
     return (
-        <Container onClick={handleClick} onDragOver={(e) => e.preventDefault()} onDrop={onDrop} onContextMenu={handleContextMenu}>
-            {count.map((f) => <Folder key={f.id} id={f.id} onDragStart={(e) => onDragStart(e,f.id)} />) }
-            <ContextMenu x={xpos} selectedFolder={selectFolder} y={ypos} open={openContextMenu} onCreateFolder={onCreateFolder} onDeleteFolder={onDeleteFolder} />
+        <Container 
+            onClick={handleClick} 
+            onDragOver={(e) => e.preventDefault()} 
+            onDrop={onDrop} 
+            onContextMenu={handleContextMenu}
+        >
+            {count.map((f) => (<Folder 
+                key={f.id} 
+                name={f.name} 
+                id={f.id} 
+                onDragStart={(e) => onDragStart(e,f.id)} 
+                onRenameFolder={onRenameFolder}
+            />)) }
+            <ContextMenu 
+                x={xpos} 
+                selectedFolder={selectFolder} 
+                y={ypos} 
+                open={openContextMenu} 
+                onCreateFolder={onCreateFolder} 
+                onDeleteFolder={onDeleteFolder} 
+                onDuplicateFolder={onDuplicateFolder}
+            />
         </Container>
     )
 }
