@@ -4,15 +4,15 @@ import Search from '../../assets/search.svg';
 import Dashboard from '../../assets/dashboard.svg';
 import Menu from '../../assets/menu.svg';
 
-import { Container, NavLabel, Section } from './topNav.styles';
+import { Container, NavLabel, Section, ArrowBtn } from './topNav.styles';
 
-const TopNav = () => {
+const TopNav = (props) => {
     return (
         <Container>
             <Section>
-                <img style={{marginRight:20}} src={Left} />
-                <img src={Right} />
-                <NavLabel>Music</NavLabel>
+                <ArrowBtn onClick={props.handleNavBack}><img src={Left} /></ArrowBtn>&emsp;
+                <ArrowBtn><img src={Right} /></ArrowBtn>
+                <NavLabel>{props.name}</NavLabel>
             </Section>
             <img src={Dashboard} />
             <img src={Menu} />

@@ -15,7 +15,7 @@ const Folder = (props) => {
         props.onRenameFolder(value, props.id);
     }
     return (
-        <Container id={props.id} onDragStart={props.onDragStart} draggable="true">
+        <Container onDoubleClick={props.onDoubleClick} onDragLeave={props.onDragLeave} onDragOver={props.onDragOver} onDrop={props.onDrop} id={props.id} onDragStart={props.onDragStart} draggable="true">
             <Img draggable="false" src={FolderImg} />
             <FolderName onChange={e => handleChange(e.target.value)} value={props.name} type="text" />
         </Container>

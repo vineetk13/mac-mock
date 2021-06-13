@@ -14,6 +14,13 @@ export const Section = styled.div`
     align-items:center;
 `;
 
+export const ArrowBtn = styled.button`
+    border:none;
+    background-color:transparent;
+    width:auto;
+    cursor:pointer;
+`;
+
 export const NavLabel = styled.p`
     margin:0;
     padding:0;

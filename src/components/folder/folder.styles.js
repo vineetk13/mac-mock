@@ -5,8 +5,9 @@ export const Container = styled.div`
     display:inline-block;
     width:70px;
     text-align:center;
-    // position:absolute;
-    // background-color: black;
+    // &:hover{
+    //     background-color:#818181;
+    // }
 `;
 export const Img = styled.img`
     &:hover{
