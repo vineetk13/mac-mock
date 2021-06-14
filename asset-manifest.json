@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/mac-mock/static/css/main.a94f495d.chunk.css",
-    "main.js": "/mac-mock/static/js/main.0477dd1b.chunk.js",
-    "main.js.map": "/mac-mock/static/js/main.0477dd1b.chunk.js.map",
+    "main.js": "/mac-mock/static/js/main.dd176b9e.chunk.js",
+    "main.js.map": "/mac-mock/static/js/main.dd176b9e.chunk.js.map",
     "runtime-main.js": "/mac-mock/static/js/runtime-main.122a016f.js",
     "runtime-main.js.map": "/mac-mock/static/js/runtime-main.122a016f.js.map",
     "static/js/2.97a83f9b.chunk.js": "/mac-mock/static/js/2.97a83f9b.chunk.js",
@@ -12,7 +12,9 @@
     "static/js/2.97a83f9b.chunk.js.LICENSE.txt": "/mac-mock/static/js/2.97a83f9b.chunk.js.LICENSE.txt",
     "static/media/airdrop.ff61e72f.svg": "/mac-mock/static/media/airdrop.ff61e72f.svg",
     "static/media/apps.292d3dfc.svg": "/mac-mock/static/media/apps.292d3dfc.svg",
+    "static/media/cloud.f3d1c794.svg": "/mac-mock/static/media/cloud.f3d1c794.svg",
     "static/media/dashboard.adbbc3bd.svg": "/mac-mock/static/media/dashboard.adbbc3bd.svg",
+    "static/media/file.31bf0ce5.svg": "/mac-mock/static/media/file.31bf0ce5.svg",
     "static/media/folder.5c77f938.svg": "/mac-mock/static/media/folder.5c77f938.svg",
     "static/media/left.446f1921.svg": "/mac-mock/static/media/left.446f1921.svg",
     "static/media/menu.98065a25.svg": "/mac-mock/static/media/menu.98065a25.svg",
@@ -25,6 +27,6 @@
     "static/js/runtime-main.122a016f.js",
     "static/js/2.97a83f9b.chunk.js",
     "static/css/main.a94f495d.chunk.css",
-    "static/js/main.0477dd1b.chunk.js"
+    "static/js/main.dd176b9e.chunk.js"
   ]
 }
