@@ -1,10 +1,77 @@
-import { createContext, useState } from 'react';
+import { useState } from 'react';
 
 import SidemenuContainer from "../containers/side menu";
 import TopNav from "../containers/top nav";
 import MainContainer from '../containers/main';
 
-// export const FoldersContext = createContext(null);
+export const createFolder = (folders,topstack) => {
+    let newFolder = null;
+    if(folders.length>0){
+        newFolder = {
+            id:folders[folders.length-1].id+1,
+            name:`Folder ${folders[folders.length-1].id+2}`,
+            parent:topstack
+        } 
+    }
+    else{
+        newFolder = {
+            id:0,
+            name:"Folder 1",
+            parent:topstack
+        }
+    }   
+    return [...folders,newFolder];
+}
+
+export const deleteFolder = (selectFolder, folders) => {
+    // Filter the respective folder from the folder list
+    const folderToBeDeleted = folders.find((f) => f.id===Number(selectFolder));
+    const filteredList = folders.filter((f) => f.id!==Number(selectFolder));
+    let newList;
+
+    // If it was duplicated, remove from original duplicates list too
+    if(folderToBeDeleted.duplicateOf>=0){
+        newList = filteredList.map((f) => {
+            if(f.id===folderToBeDeleted.duplicateOf){
+                return {
+                    ...f,
+                    duplicates:f.duplicates.filter((d) => d.id!==folderToBeDeleted.id)
+                }
+            }
+            return f;
+        })
+    }
+    else{
+        newList = filteredList;
+    }
+    
+    return [...newList];
+}
+
+export const duplicateFolder = (selectFolder, folders) => {
+    // Read the folder details to duplicate
+    const toDuplicate = folders.find((f) => f.id===Number(selectFolder));
+
+    // Create the duplicate folder object
+    const newFolder = {
+        id:folders[folders.length-1].id+1,
+        name:`${toDuplicate.name} (${toDuplicate.duplicates ? toDuplicate.duplicates.length+1 : 1})`,
+        duplicateOf:toDuplicate.id, // Specify which folder is duplicated
+        parent:toDuplicate.parent
+    }
+
+    // Update the list by specifying the list of duplicates to the corresponding folder 
+    const newList = folders.map((f) => {
+        if(toDuplicate.id===f.id){
+            return {
+                ...f,
+                duplicates:f.duplicates ? [...f.duplicates,newFolder] : [newFolder]
+            }
+        }
+        return f;
+    })
+    return [...newList,newFolder];
+}
 
 
 const MacLayout = (props) => {
@@ -15,70 +82,15 @@ const MacLayout = (props) => {
     const [topstack, setTopstack] = useState(-1);
 
     const onCreateFolder = () => {
-        let newFolder = null;
-        if(folders.length>0){
-            newFolder = {
-                id:folders[folders.length-1].id+1,
-                name:`Folder ${folders[folders.length-1].id+2}`,
-                parent:topstack
-            } 
-        }
-        else{
-            newFolder = {
-                id:0,
-                name:"Folder 1",
-                parent:topstack
-            }
-        }
-        setFolders([...folders,newFolder]);
+        setFolders([...createFolder(folders, topstack)]);
     }
+
     const onDeleteFolder = (selectFolder) => {
-        // Filter the respective folder from the folder list
-        const folderToBeDeleted = folders.find((f) => f.id===Number(selectFolder));
-        const filteredList = folders.filter((f) => f.id!==Number(selectFolder));
-        let newList;
-
-        // If it was duplicated, remove from original duplicates list too
-        if(folderToBeDeleted.duplicateOf>=0){
-            newList = filteredList.map((f) => {
-                if(f.id===folderToBeDeleted.duplicateOf){
-                    return {
-                        ...f,
-                        duplicates:f.duplicates.filter((d) => d.id!==folderToBeDeleted.id)
-                    }
-                }
-                return f;
-            })
-        }
-        else{
-            newList = filteredList;
-        }
-        
-        setFolders([...newList]);
+        setFolders([...deleteFolder(selectFolder, folders)]);
     }
+
     const onDuplicateFolder = (selectFolder) => {
-        // Read the folder details to duplicate
-        const toDuplicate = folders.find((f) => f.id===Number(selectFolder));
-
-        // Create the duplicate folder object
-        const newFolder = {
-            id:folders[folders.length-1].id+1,
-            name:`${toDuplicate.name} (${toDuplicate.duplicates ? toDuplicate.duplicates.length+1 : 1})`,
-            duplicateOf:toDuplicate.id, // Specify which folder is duplicated
-            parent:toDuplicate.parent
-        }
-
-        // Update the list by specifying the list of duplicates to the corresponding folder 
-        const newList = folders.map((f) => {
-            if(toDuplicate.id===f.id){
-                return {
-                    ...f,
-                    duplicates:f.duplicates ? [...f.duplicates,newFolder] : [newFolder]
-                }
-            }
-            return f;
-        })
-        setFolders([...newList,newFolder]);
+        setFolders([...duplicateFolder(selectFolder, folders)]);
     }
 
     const onDoubleClickFolder = (e,id) => {

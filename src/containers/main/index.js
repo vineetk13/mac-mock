@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 
 import Folder from '../../components/folder';
 import ContextMenu from '../../components/context menu';
@@ -89,6 +89,7 @@ const MainContainer = (props) => {
             onDragOver={(e) => e.preventDefault()} 
             onDrop={onDrop} 
             onContextMenu={handleContextMenu}
+            className="folder-layout"
         >
             {props.folders.map((f) => (<Folder 
                 key={f.id} 

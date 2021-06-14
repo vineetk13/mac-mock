@@ -8,7 +8,7 @@ const ContextMenu = (props) => {
             top:`calc(${props.y} - 65px)`,
             left:`calc(${props.x} - 20vw)`
         }}>
-            <Item onClick={onCreateFolder}>Create folder</Item>
+            {!selectedFolder ? <Item onClick={onCreateFolder}>Create folder</Item> : null}
             {selectedFolder ? <Item onClick={onDuplicateFolder}>Duplicate folder</Item> : null}
             {selectedFolder ? <Item onClick={onDeleteFolder}>Delete folder</Item> : null}
         </Wrapper>
