@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/mac-mock/static/css/main.a94f495d.chunk.css",
+    "main.js": "/mac-mock/static/js/main.0477dd1b.chunk.js",
+    "main.js.map": "/mac-mock/static/js/main.0477dd1b.chunk.js.map",
+    "runtime-main.js": "/mac-mock/static/js/runtime-main.122a016f.js",
+    "runtime-main.js.map": "/mac-mock/static/js/runtime-main.122a016f.js.map",
+    "static/js/2.97a83f9b.chunk.js": "/mac-mock/static/js/2.97a83f9b.chunk.js",
+    "static/js/2.97a83f9b.chunk.js.map": "/mac-mock/static/js/2.97a83f9b.chunk.js.map",
+    "index.html": "/mac-mock/index.html",
+    "static/css/main.a94f495d.chunk.css.map": "/mac-mock/static/css/main.a94f495d.chunk.css.map",
+    "static/js/2.97a83f9b.chunk.js.LICENSE.txt": "/mac-mock/static/js/2.97a83f9b.chunk.js.LICENSE.txt",
+    "static/media/airdrop.ff61e72f.svg": "/mac-mock/static/media/airdrop.ff61e72f.svg",
+    "static/media/apps.292d3dfc.svg": "/mac-mock/static/media/apps.292d3dfc.svg",
+    "static/media/dashboard.adbbc3bd.svg": "/mac-mock/static/media/dashboard.adbbc3bd.svg",
+    "static/media/folder.5c77f938.svg": "/mac-mock/static/media/folder.5c77f938.svg",
+    "static/media/left.446f1921.svg": "/mac-mock/static/media/left.446f1921.svg",
+    "static/media/menu.98065a25.svg": "/mac-mock/static/media/menu.98065a25.svg",
+    "static/media/music.e98e090c.svg": "/mac-mock/static/media/music.e98e090c.svg",
+    "static/media/recent.95c11fa1.svg": "/mac-mock/static/media/recent.95c11fa1.svg",
+    "static/media/right.f117ef76.svg": "/mac-mock/static/media/right.f117ef76.svg",
+    "static/media/search.664c98bc.svg": "/mac-mock/static/media/search.664c98bc.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.122a016f.js",
+    "static/js/2.97a83f9b.chunk.js",
+    "static/css/main.a94f495d.chunk.css",
+    "static/js/main.0477dd1b.chunk.js"
+  ]
+}
