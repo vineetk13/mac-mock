@@ -4,6 +4,7 @@ export const Container = styled.div`
     padding:20px;
     display:flex;
     align-items:center;
+    justify-content:space-between;
     // border:1px solid white;
 `;
 
@@ -12,6 +13,13 @@ export const Section = styled.div`
     width:50%;
     display:flex;
     align-items:center;
+`;
+export const OtherIcons = styled.div`
+    // border:1px solid white;
+    width:150px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 `;
 
 export const ArrowBtn = styled.button`

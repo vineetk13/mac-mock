@@ -3,6 +3,7 @@ import { useState } from 'react';
 import SidemenuContainer from "../containers/side menu";
 import TopNav from "../containers/top nav";
 import MainContainer from '../containers/main';
+import { MainLayout } from './macLayout.styles';
 
 export const createFolder = (folders,topstack) => {
     let newFolder = null;
@@ -44,8 +45,9 @@ export const deleteFolder = (selectFolder, folders) => {
     else{
         newList = filteredList;
     }
-    
-    return [...newList];
+
+    // Delete the children of folderToBeDeleted
+    return [...newList.filter((f) => f.parent!==folderToBeDeleted.id)];
 }
 
 export const duplicateFolder = (selectFolder, folders) => {
@@ -80,7 +82,7 @@ const MacLayout = (props) => {
     const [parentStack, setParentStack] = useState([-1])
 
     const [topstack, setTopstack] = useState(-1);
-
+    
     const onCreateFolder = () => {
         setFolders([...createFolder(folders, topstack)]);
     }
@@ -149,7 +151,7 @@ const MacLayout = (props) => {
     return (
         <div style={{display:"flex"}}>
             <SidemenuContainer />
-            <div style={{backgroundColor:"#161618",flex:1,boxSizing:"border-box"}}>
+            <MainLayout>
                 <TopNav name={navName} handleNavBack={handleNavBack} />
                 <MainContainer
                     createFolder={onCreateFolder}
@@ -160,7 +162,7 @@ const MacLayout = (props) => {
                     exploreFolder={onDoubleClickFolder}
                     folders={[...folders.filter((f) => f.parent===topstack)]}
                 />
-            </div>
+            </MainLayout>
         </div>
     )
 }

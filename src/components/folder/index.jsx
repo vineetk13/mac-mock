@@ -1,16 +1,9 @@
-import { useState, useRef } from 'react';
-
 import FolderImg from '../../assets/folder.svg';
 
 import { Container, FolderName,Img } from './folder.styles';
 
 const Folder = (props) => {
-    // const [name, setName] = useState(props.name);
-    // const inputRef = useRef(null);
-    // const handleInputClick = () => {
-    //     // inputRef.current.readOnly=false;
-    //     console.log(inputRef.current);
-    // }
+   
     const handleChange = (value) => {
         props.onRenameFolder(value, props.id);
     }

@@ -4,7 +4,7 @@ import Search from '../../assets/search.svg';
 import Dashboard from '../../assets/dashboard.svg';
 import Menu from '../../assets/menu.svg';
 
-import { Container, NavLabel, Section, ArrowBtn } from './topNav.styles';
+import { Container, NavLabel, Section, ArrowBtn, OtherIcons } from './topNav.styles';
 
 const TopNav = (props) => {
     return (
@@ -14,9 +14,11 @@ const TopNav = (props) => {
                 <ArrowBtn><img src={Right} /></ArrowBtn>
                 <NavLabel>{props.name}</NavLabel>
             </Section>
-            <img src={Dashboard} />
-            <img src={Menu} />
-            <img src={Search} />
+            <OtherIcons>
+                <img src={Dashboard} />
+                <img src={Menu} />
+                <img src={Search} />
+            </OtherIcons>
         </Container>
     )
 }

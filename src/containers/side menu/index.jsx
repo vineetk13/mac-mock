@@ -2,6 +2,8 @@ import AirDrop from '../../assets/airdrop.svg';
 import Apps from '../../assets/apps.svg';
 import Recent from '../../assets/recent.svg';
 import Music from '../../assets/music.svg';
+import Cloud from '../../assets/cloud.svg';
+import File from '../../assets/file.svg';
 
 import { Container, PanelBtn, CategorySection, CategoryHeading, CategoryItem, ItemName } from './sideMenu.styles';
 
@@ -35,12 +37,12 @@ const SidemenuContainer = () => {
             <CategorySection>
                 <CategoryHeading>iCloud</CategoryHeading>
                 <CategoryItem>
-                    <img src={AirDrop} />
-                    <ItemName>AirDrop</ItemName>
+                    <img src={Cloud} />
+                    <ItemName>iCloud Drive</ItemName>
                 </CategoryItem>
                 <CategoryItem>
-                    <img src={Recent} />
-                    <ItemName>Recents</ItemName>
+                    <img src={File} />
+                    <ItemName>Documents</ItemName>
                 </CategoryItem>
                 <CategoryItem>
                     <img src={Apps} />
